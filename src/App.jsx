@@ -12,6 +12,11 @@ import Cure from "./pages/Cure/Cure";
 import About from "./pages/About/About";
 import Work from "./pages/Work/Work";
 
+const basename =
+  import.meta.env.BASE_URL === "/"
+    ? undefined
+    : import.meta.env.BASE_URL.replace(/\/$/, "");
+
 // Placeholder for pending case study
 function Cladding() {
   return (
@@ -74,7 +79,7 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={basename}>
       <ScrollToTop />
       <InteractiveBackground />
       <div className="site">
