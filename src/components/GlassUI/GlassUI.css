@@ -1,0 +1,113 @@
+:root {
+  --glass-bg: rgba(8, 10, 18, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(180, 215, 255, 0.35);
+  --glass-glow-hover: rgba(140, 190, 255, 0.12);
+  --blur-intensity: blur(16px);
+}
+
+/* Glass Nav */
+.glass-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(3, 3, 7, 0.75);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur-intensity);
+  -webkit-backdrop-filter: var(--blur-intensity);
+}
+
+.glass-nav__logo-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.glass-nav__logo {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  transition: opacity 0.2s ease;
+}
+
+.glass-nav__logo-link:hover .glass-nav__logo {
+  opacity: 0.8;
+}
+
+.glass-nav__links {
+  display: flex;
+  gap: 32px;
+}
+
+.glass-nav__link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: color 0.2s ease;
+}
+
+.glass-nav__link:hover {
+  color: #ffffff;
+}
+
+.glass-nav__cta {
+  padding: 10px 22px;
+  background: rgba(200, 225, 255, 0.9);
+  color: #030208;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-nav__cta:hover {
+  background: #ffffff;
+  box-shadow: 0 0 20px rgba(220, 240, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Glass Footer */
+.glass-footer {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 32px 48px;
+  margin-top: 100px;
+  background: rgba(3, 3, 7, 0.85);
+  border-top: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur-intensity);
+  -webkit-backdrop-filter: var(--blur-intensity);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* Responsive Mobile Adjustments */
+@media (max-width: 768px) {
+  .glass-nav {
+    padding: 16px 20px;
+  }
+  .glass-nav__links {
+    gap: 16px;
+  }
+  .glass-footer {
+    padding: 24px 20px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

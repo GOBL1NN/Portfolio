@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap");
+:root {
+  font-family: "Geist", Arial, sans-serif;
+
+  color: #e7e5e4;
+  background: #0a0a0a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
+  --bg: #0a0a0a;
+  --surface: #101010;
+  --surface-light: #151515;
+  --border: #2a2a2a;
+
+  --text: #e7e5e4;
+  --text-muted: #a1a1aa;
+  --text-dim: #71717a;
+
+  --accent: #a9c4ff;
+  --accent-text: #0a0a0a;
+
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 18px;
+  --font-xl: 24px;
+  --font-2xl: 32px;
+  --font-3xl: 48px;
+
+  --max-width: 1500px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Frontage";
+  src: url("./assets/fonts/Frontage-3D.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+/* ================================
+   GLOBAL CONTAINER
+================================ */
+
+.container {
+  width: min(92vw, var(--max-width));
+  margin-inline: auto;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 38px;
+  padding: 0 16px;
+
+  border: 1px solid var(--border);
+
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.button--primary:hover {
+  opacity: 0.9;
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--text);
+}
+
+.button--secondary:hover {
+  border-color: #555;
+}
+
+/* =========================================
+   GLOBAL SECTION LABELS
+========================================= */
+
+.eyebrow {
+  margin: 0 0 20px !important;
+
+  color: var(--accent) !important;
+
+  font-size: 14px !important;
+  font-weight: 600 !important;
+
+  letter-spacing: 0.08em !important;
+  line-height: 1.4 !important;
+
+  text-transform: uppercase !important;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 700px) {
+  .container {
+    width: min(calc(100% - 32px), var(--max-width));
+  }
+
+  .button {
+    min-height: 40px;
+  }
+}
+
+/* Transparent containers so background canvas is visible */
+body,
+.carlink-page,
+.site-content {
+  background: transparent !important;
+}
+
+.site-content {
+  position: relative;
+  z-index: 10;
+}
+/* Force content wrapper above background layer */
+.site {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Ensure individual cards/surfaces maintain their dark translucent background */
+.breadth-feature__image,
+.breadth-supporting__card,
+.purchase-flow__step {
+  background: rgba(16, 16, 16, 0.65);
+  backdrop-filter: blur(8px);
+}
