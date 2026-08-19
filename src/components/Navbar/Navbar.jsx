@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 
 import logo from "../../assets/logo/AK-logo.png";
@@ -8,7 +8,6 @@ import Magnetic from "../Magnetic/Magnetic";
 
 function Navbar() {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
@@ -27,16 +26,6 @@ function Navbar() {
     location.pathname === "/work" || location.pathname.startsWith("/projects/");
 
   const isAboutActive = location.pathname === "/about";
-
-  const handleContactClick = (event) => {
-    event.preventDefault();
-
-    navigate("/", {
-      state: {
-        scrollTo: "contact",
-      },
-    });
-  };
 
   return (
     <motion.header
@@ -88,26 +77,22 @@ function Navbar() {
           </Magnetic>
 
           <Magnetic>
-            <a
-              href="/#contact"
+            <Link
+              to="/"
+              state={{ scrollTo: "contact" }}
               className="navbar__link"
-              onClick={handleContactClick}
             >
               Contact
-            </a>
+            </Link>
           </Magnetic>
         </nav>
 
         {/* CTA */}
 
         <Magnetic>
-          <a
-            href="/#contact"
-            className="navbar__cta"
-            onClick={handleContactClick}
-          >
+          <Link to="/" state={{ scrollTo: "contact" }} className="navbar__cta">
             Let&apos;s Talk
-          </a>
+          </Link>
         </Magnetic>
       </div>
     </motion.header>
