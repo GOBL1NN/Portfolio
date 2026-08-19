@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Home.css";
 
@@ -77,15 +78,15 @@ function Home() {
               </p>
 
               <div className="hero__actions">
-                <a href="/work" className="button button--primary">
+                <Link to="/work" className="button button--primary">
                   View My Work
                   <ArrowUpRight size={14} />
-                </a>
+                </Link>
 
-                <a href="/about" className="button button--secondary">
+                <Link to="/about" className="button button--secondary">
                   About Me
                   <ArrowUpRight size={14} />
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>

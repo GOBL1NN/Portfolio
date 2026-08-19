@@ -5,56 +5,65 @@ function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const targetId = location.state?.scrollTo;
 
-    const scrollToContact = () => {
-      const element = document.getElementById(targetId);
+    // Check whether this navigation is a page reload.
+    const navigation = performance.getEntriesByType("navigation")[0];
+    const isReload = navigation?.type === "reload";
 
-      if (!element) {
-        return false;
-      }
-
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-
-      return true;
-    };
-
-    let attempts = 0;
-    let timer;
-
-    const tryScroll = () => {
-      attempts += 1;
-
-      if (targetId) {
-        const found = scrollToContact();
-
-        if (found) {
-          return;
-        }
-
-        // Keep checking briefly until Home has rendered.
-        if (attempts < 20) {
-          timer = setTimeout(tryScroll, 50);
-          return;
-        }
-      }
-
-      // Normal page navigation
+    // On refresh, always start at the top.
+    if (isReload) {
       window.scrollTo({
         top: 0,
         left: 0,
         behavior: "instant",
       });
-    };
 
-    timer = setTimeout(tryScroll, 0);
+      return;
+    }
 
-    return () => {
-      clearTimeout(timer);
-    };
+    // If this navigation contains a scroll target,
+    // wait for the destination page to render.
+    if (targetId) {
+      let attempts = 0;
+      let timer;
+
+      const tryScroll = () => {
+        attempts += 1;
+
+        const element = document.getElementById(targetId);
+
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          return;
+        }
+
+        if (attempts < 20) {
+          timer = setTimeout(tryScroll, 50);
+        }
+      };
+
+      timer = setTimeout(tryScroll, 0);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+
+    // Normal navigation → top.
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
   }, [location.pathname, location.key, location.state]);
 
   return null;

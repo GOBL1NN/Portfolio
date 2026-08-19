@@ -526,7 +526,11 @@ function About() {
               </p>
 
               <div className="about-currently__actions">
-                <Link to="/#contact" className="button button--primary">
+                <Link
+                  to="/"
+                  state={{ scrollTo: "contact" }}
+                  className="button button--primary"
+                >
                   Let&apos;s Talk
                   <ArrowUpRight size={14} />
                 </Link>
